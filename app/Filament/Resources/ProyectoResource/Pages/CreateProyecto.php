@@ -1,0 +1,24 @@
+<?php
+
+namespace App\Filament\Resources\ProyectoResource\Pages;
+
+use App\Filament\Resources\ProyectoResource;
+use Filament\Actions;
+use Filament\Resources\Pages\CreateRecord;
+
+class CreateProyecto extends CreateRecord
+{
+    protected static string $resource = ProyectoResource::class;
+
+    /*protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }*/
+
+    protected function mutateFormDataBeforeCreate(array $data): array
+    {
+        $data['id_usuario'] = auth()->user()->id;
+        $data['estado'] = "Abierto";
+        return $data;
+    }
+}
